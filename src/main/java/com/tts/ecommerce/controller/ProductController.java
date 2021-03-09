@@ -1,5 +1,7 @@
 package com.tts.ecommerce.controller;
 
+import com.tts.ecommerce.model.Product;
+import com.tts.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,12 +21,13 @@ public class ProductController {
     @GetMapping(value = "/product/{id}")
     public String show(@PathVariable int id, Model model) {
         Product product = productService.findById(id);
-        model.addAttriubte(product);
+        model.addAttribute(product);
         return "product";
     }
 
     @RequestMapping(value = "/product", method = {RequestMethod.POST, RequestMethod.PUT})
-    public String createOrUpdate(@Valid Product product)
+    public String createOrUpdate(@Valid Product product) {
         productService.save(product);
         return "redirect:/product" + product.getId();
+    }
 }
