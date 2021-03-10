@@ -42,7 +42,7 @@ public class MainController {
     @GetMapping(value = "/filter")
     public String filter(@RequestParam(required = false) String category,
                          @RequestParam(required = false) String brand, Model model) {
-        List<Product> filtered = productService.findByBrandAndOrCategory(brand, category);
+        List<Product> filtered = productService.findByBrandAndCategory(brand, category);
         model.addAttribute("products", filtered);
 
         return "main";

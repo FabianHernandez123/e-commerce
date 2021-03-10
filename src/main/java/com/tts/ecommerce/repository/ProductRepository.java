@@ -13,7 +13,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     Product findById(long id);
     List<Product> findByBrand(String brand);
     List<Product> findByCategory(String category);
-    List<Product> findByBrandAndOrCategory(String brand, String category);
+    List<Product> findByBrandAndCategory(String brand, String category);
 
     @Query("SELECT DISTINCT p.brand FROM Product p")
     List<String> findDistinctBrands();

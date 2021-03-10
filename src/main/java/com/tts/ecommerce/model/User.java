@@ -13,10 +13,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 // left off slide 41
 @Data
 @Builder
@@ -63,6 +61,7 @@ public class User implements UserDetails{
 
     @Length(message="Can't leave empty")
     private String lastName;
+
     private int active;
 
     @CreationTimestamp
@@ -72,5 +71,7 @@ public class User implements UserDetails{
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    @ElementCollection
+    private Map<Product, Integer> cart;
 
 }
