@@ -44,9 +44,9 @@ public class User implements UserDetails{
     private Long id;
     // setting up the variables that we will need
 
-    @Email(message = "Please provide a valid email")
-    @NotEmpty(message = "Please provide an email")
-    private String email;
+//    @Email(message = "Please provide a valid email")
+//    @NotEmpty(message = "Please provide an email")
+//    private String email;
 
     @Length(min = 3, message = "Your username must have more than 3 letters")
     @Length(max = 15, message = "Your username cannot have more than 15 letters")
@@ -56,16 +56,17 @@ public class User implements UserDetails{
     @Length(min = 5, message="Your password needs to be more than 5 characters")
     private String password;
 
-    @Length(message="Can't leave empty")
-    private String firstName;
-
-    @Length(message="Can't leave empty")
-    private String lastName;
+//    @Length(message="Can't leave empty")
+//    private String firstName;
+//
+//    @Length(message="Can't leave empty")
+//    private String lastName;
 
     private int active;
 
-    @CreationTimestamp
-    private Date createdAt;
+//    @CreationTimestamp
+//
+
     // that start of the sql queries to line the user_id to the roles and the following.
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
