@@ -39,15 +39,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/cart").authenticated()
                 .antMatchers().hasAuthority("USER").anyRequest().authenticated()
                 .and().csrf().disable().formLogin()
-//                .and().formLogin().loginPage("/signin")
-//                .loginProcessingUrl("login")
+//                .and().formLogin().loginPage("/signin") xx
+//                .loginProcessingUrl("login") xx
                 .loginPage("/signin").failureUrl("/signin?error=true")
                 .defaultSuccessUrl("/")
-                .loginProcessingUrl("/signin")
+                .loginProcessingUrl("/login") //cant make a new user with /signin here
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/signout"))
                 .logoutSuccessUrl("/")
                 .and().exceptionHandling();
         http.headers().frameOptions().disable();
     }
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/cart").authenticated()
+//                .and().formLogin().loginPage("/signin")
+//                .loginProcessingUrl("/signin")
+//                .and().logout()
+//                .logoutRequestMatcher(new AntPathRequestMatcher("/signout"))
+//                .logoutSuccessUrl("/");
+//    }
+
+
+
 }
